@@ -1,4 +1,5 @@
 use crate::hardware::CPUInfo;
+use tracing::debug;
 use regex::Regex;
 
 fn get_cpu_model() -> (String, String, String) {
@@ -59,6 +60,8 @@ pub fn get_cpu() -> CPUInfo {
     let (family, model, model_name) = get_cpu_model();
     let memory = get_memory_info();
     let cores = num_cpus::get();
+
+    debug!("Found a {}", model_name);
 
     CPUInfo {
         family,

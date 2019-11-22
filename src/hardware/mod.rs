@@ -1,3 +1,5 @@
+use tracing::{span, Span, Level};
+
 mod cpu;
 
 #[derive(Debug)]
@@ -31,6 +33,9 @@ pub struct OpenCLInfo {
 }
 
 pub fn enumerate_devices() -> Vec<ComputeDevice> {
+    let span: Span = span!(Level::INFO, "Enumerating Devices");
+    let _guard = span.enter();
+
     let mut devices = Vec::new();
 
     devices.push(ComputeDevice::CPU(cpu::get_cpu()));
