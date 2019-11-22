@@ -3,15 +3,15 @@ use tracing::{span, Span, Level};
 
 mod client;
 mod hardware;
+mod macros;
 
 pub fn main() {
     tracing_subscriber::fmt::init();
 
-    let span: Span = span!(Level::INFO, "Sheepit-Polyclient");
+    let span: Span = span!(Level::INFO, package_name!());
     let _guard = span.enter();
 
-    // TODO: Actual version
-    tracing::event!(Level::INFO, "Welcome to the Sheepit-Polyclient v0.1.0");
+    tracing::event!(Level::INFO, std::concat!("Welcome to the ", package!()));
 
     let devices = hardware::enumerate_devices();
 

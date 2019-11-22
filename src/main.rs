@@ -1,3 +1,3 @@
 fn main() {
-    sheepit_polyclient::main();
+    sheepit_sheppard::main();
 }
